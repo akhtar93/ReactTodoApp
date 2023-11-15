@@ -1,0 +1,62 @@
+.header{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.appTitle{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerActions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerSearchAction{
+  padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.filterContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid;
+  border-radius: 5px;
+}
+.button {
+  float: left;
+  width: 100px;
+  height: 40px;
+  position: relative;
+}
+
+.buttonLabel,
+.buttonInput {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.buttonInput[type="radio"] {
+  opacity: 0.011;
+  z-index: 100;
+}
+
+.buttonInput[type="radio"]:checked + label {
+  background: #20b8be;
+  border-radius: 4px;
+}
+
+.buttonLabel {
+  cursor: pointer;
+  z-index: 90;
+  line-height: 1.8em;
+}
