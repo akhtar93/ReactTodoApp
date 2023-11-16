@@ -1,0 +1,9 @@
+import React from 'react';
+
+function About(props) {
+
+  return (
+    <h1>This is about us</h1>
+  );
+}
+export default About;

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export function getTodoList() {
-  return axios.get('https://dummyjson.com/todos?limit=1000');
+export function getTodoList(taskId) {
+  return axios.get(`https://dummyjson.com/todos/${taskId}?limit=1000`);
 }
 
 export function addTask(taskObj) {

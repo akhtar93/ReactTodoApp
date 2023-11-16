@@ -18,12 +18,12 @@ export default class TaskList extends React.Component {
   }
   onDeleteTask = (id) => {
     const { taskList } = this.props;
-    const newTaskList = taskList.filter(task => task.id !== id);
+    const newTaskList = (taskList || []).filter(task => task.id !== id);
     this.setState({ taskList: newTaskList });
   }
   getCompleteCount = () => {
     const { taskList } = this.props;
-    const completeTasks = taskList.filter(task => task.completed);
+    const completeTasks = (taskList || []).filter(task => task.completed);
     return completeTasks.length;
   }
   onSearchTaskList = (val) => {
@@ -47,9 +47,9 @@ export default class TaskList extends React.Component {
   getTaskListData = () => {
     const { searchText, selectedFilter } = this.state;
     const { taskList } = this.props;
-    let newData = taskList;
+    let newData = taskList || [];
     if (searchText) {
-      newData = taskList.filter(task => task.todo.includes(searchText.toLowerCase()))
+      newData = (taskList || []).filter(task => task.todo.includes(searchText.toLowerCase()))
     }
     if (selectedFilter === 'all') {
       return newData;
@@ -67,7 +67,7 @@ export default class TaskList extends React.Component {
     const { selectedFilter } = this.state;
     const { taskList } = this.props;
     const completedTasksCount = this.getCompleteCount();
-    const incompleteTasksCount = taskList.length - completedTasksCount;
+    const incompleteTasksCount = (taskList || []).length - completedTasksCount;
     return (
       <section style={{ width: '60%', margin: '0 auto' }}>
         <Header

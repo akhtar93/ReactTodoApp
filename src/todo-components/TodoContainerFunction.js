@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import TaskList from './TaskList';
 import { getTodoList, addTask, markAsDone } from '../api/api.js';
+import { useParams } from 'react-router-dom';
 function TodoContainerFunction(props) {
+  const { id } = useParams();
+  console.log({ id });
   const [todoList, setTodoList] = useState([]); // this.state, this.setState
   useEffect(() => {
-    getTodos();
-  }, []);
-  const getTodos = () => {
-    getTodoList()
+    getTodos(id);
+  }, [id]);
+  const getTodos = (taskId) => {
+    getTodoList(taskId)
     .then((response) => {
       const result = response.data;
-      setTodoList(result.todos);
+      if (result.todos) {
+        setTodoList(result.todos);
+      } else {
+        setTodoList([result]);
+      }
     })
     .catch((e) => {
       console.log(e);
