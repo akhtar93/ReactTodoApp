@@ -6,11 +6,13 @@ function TodoContainerFunction(props) {
   const { id } = useParams();
   console.log({ id });
   const [todoList, setTodoList] = useState([]); // this.state, this.setState
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     getTodos(id);
   }, [id]);
-  const getTodos = (taskId) => {
-    getTodoList(taskId)
+  const getTodos = () => {
+    setIsLoading(true);
+    getTodoList()
     .then((response) => {
       const result = response.data;
       if (result.todos) {
@@ -21,6 +23,9 @@ function TodoContainerFunction(props) {
     })
     .catch((e) => {
       console.log(e);
+    })
+    .finally(() => {
+      setIsLoading(false);
     });
   };
   const onAddNewTask = (taskObj) => {
@@ -43,7 +48,8 @@ function TodoContainerFunction(props) {
     })
     .catch((e) => { alert(e.message) })
   };
-  return (
+  return isLoading ? <h>Task list is loading ...</h> : (
+
     <TaskList taskList={ todoList }
       addNewTask={onAddNewTask}
       completeTask={ onCompleteTask }
